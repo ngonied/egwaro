@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Assignment, Profile, Topic, TopicInstance, Course, Subject
+from .models import *
 
 
 admin.site.register(Assignment)
 admin.site.register(Profile)
-admin.site.register(Topic)
-admin.site.register(TopicInstance)
-admin.site.register(Course)
 admin.site.register(Subject)
+# admin.site.register(TopicInstance)
+admin.site.register(Course)
+admin.site.register(Answer)
+admin.site.register(AssignmentFeedback)
+admin.site.register(CourseStarted)

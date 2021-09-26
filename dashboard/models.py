@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import DO_NOTHING
+from django.db.models.fields.related import ForeignKey, OneToOneField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
@@ -52,11 +54,12 @@ sorted instances will be combined to form a single page content to be viewed as 
 Topic. Custom CMS that is. """
 
 
-class TopicInstance(models.Model):
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    content = models.TextField()
-    order = models.IntegerField()
-    diagram = models.ImageField(upload_to='topic_diagrams')
+# class TopicInstance(models.Model):
+#     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+#     content = models.TextField()
+#     order = models.IntegerField()
+#     diagram = models.ImageField(
+#         upload_to='topic_diagrams', blank=True, required=False)
 
 
 # The link to profile has been ceased
@@ -110,7 +113,7 @@ class Profile(models.Model):
         max_length=30, default="Somewhere in Cape Town")
     birth_date = models.DateField(null=True, blank=True)
     photo = models.ImageField(upload_to='profile_pics', blank=True)
-    subject = models.ManyToManyField(Subject, blank=True)
+    #subject = models.ManyToManyField(Subject, blank=True)
     is_tutor = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now=True)
 
@@ -119,10 +122,37 @@ class Profile(models.Model):
 
 
 class Assignment(models.Model):
+
     name = models.CharField(max_length=50)
     date_issued = models.DateField(auto_now=True)
     date_due = models.DateField(auto_now=False)
-    topic = models.ManyToManyField(Profile)
+    # topic = models.ManyToManyField(Profile)
+    assign_out = models.FileField(upload_to='assign_out')
+    subject = ForeignKey(Subject, on_delete=DO_NOTHING, default=1)
 
     def __str__(self):
         return self.name
+
+
+class Answer(models.Model):
+    answer = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+    assign_in = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='inbound_assgns')
+    submission = models.DateField(auto_now=True)
+
+    def __str__(self):
+        display_name = (self.answer.name +
+                        " answer from: " + self.assign_in.user.username)
+        return display_name
+
+
+class AssignmentFeedback(models.Model):
+    feedback = models.OneToOneField(Answer, on_delete=models.CASCADE)
+    comment = models.TextField()
+    assessed_doc = models.FileField(upload_to='assessed_docs')
+
+
+class CourseStarted(models.Model):
+    student = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    progress = models.IntegerField(default=0)
