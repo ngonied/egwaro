@@ -1,4 +1,9 @@
 *.txt
 /files/*
 ngonied
+ngonied.*
 ngonied.pub
+*ngonied
+ngonied*
+./ngonied
+./ngonied.pub
