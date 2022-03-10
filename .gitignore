@@ -8,3 +8,4 @@ ngonied*
 ./ngonied
 ./ngonied.pub
 db.sqlite3
+*/migrations/*
