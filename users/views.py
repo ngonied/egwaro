@@ -11,7 +11,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class CreateCustomUser(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    #parser_classes = (MultiPartParser, FormParser)
     #register a user and obtain a token in one view
     permission_classes = (permissions.AllowAny,)
     authenticaton_classes = ()

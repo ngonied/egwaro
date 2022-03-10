@@ -25,7 +25,7 @@ extra_patterns = [
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # path('create/', user_views.CreateCustomUser.as_view(), name = 'create_user'), #post method
     # path('update/', user_views.CreateCustomUser.as_view, name = 'update_user_info'), #patch method
-    path('profile/', user_views.CreateCustomUser.as_view(), name = 'profile'),  #get method
+    path('profile/', user_views.CreateCustomUser.as_view(), name = 'profile'),  #all methods
     path('logout/', user_views.LogoutBlackListRefreshTokenView.as_view(), name = 'logout'),
 ]
 
