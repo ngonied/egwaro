@@ -23,8 +23,8 @@ urlpatterns = [
     re_path(r'^courses/(?P<pk>[0-9]+)/$', CourseDetailView.as_view(), name= "Course_details"), #We're here guys
     re_path(r'^my_courses/$', MyCoursesView.as_view(), name = "my_courses"),
     path("levels/", AllLevelsListView.as_view(), name='all_levels'),
-    path("kanji/", AllSubjectsView.as_view()),
-    re_path(r'kanji/(?P<subject>\w+)/$', SubjectCoursesView.as_view(), name = "subject_courses_list"),
+    path("subjectslist/", AllSubjectsView.as_view()),
+    re_path(r'subjectslist/(?P<code>\w+)/$', SubjectCoursesView.as_view(), name = "subject_courses_list"),
     re_path(r'^enrol/$', EnrolForCourseView.as_view({'post':'create'}), name="enrol"),
     re_path(r'^courses/(?P<course_id>\w+)/topiclist/$', CourseTopicsView.as_view()),
     re_path(r'^courses/(?P<course_id>[0-9]+)/keypoints/$', CourseKeyPointsView.as_view()),
