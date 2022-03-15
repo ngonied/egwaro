@@ -93,9 +93,9 @@ WSGI_APPLICATION = 'egwaro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': "d9hr7gc3s701ic",
-        'USER':"lnmpjuzdkmvwzo",
-        'PASSWORD':"a25639c70f8fba0c4fa689f4332de807f6b108bd1982972c7f9f1b88b0acae46",
+        'NAME': "dalpk7u77b3fag",
+        'USER':"xjvbwigdoyeimr",
+        'PASSWORD':"ce99abcb24cef4c5f792e63dc2c907d8f2d77ea5bb059985cfe6f256486ca37f",
         'HOST':"ec2-3-216-221-31.compute-1.amazonaws.com",
         'PORT': "5432",
     }
