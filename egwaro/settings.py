@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-x_cz0*e#527f-pj5pi+w(@3a0_s-lvd%5aez!&e&x$q1%t1$&$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1',]
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'egwaro.herokuapp.com']
 
 
 # Application definition
@@ -84,13 +84,22 @@ WSGI_APPLICATION = 'egwaro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': "d9hr7gc3s701ic",
+        'USER':"lnmpjuzdkmvwzo",
+        'PASSWORD':"a25639c70f8fba0c4fa689f4332de807f6b108bd1982972c7f9f1b88b0acae46",
+        'HOST':"ec2-3-216-221-31.compute-1.amazonaws.com",
+        'PORT': "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
