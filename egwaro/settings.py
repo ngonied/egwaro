@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-x_cz0*e#527f-pj5pi+w(@3a0_s-lvd%5aez!&e&x$q1%t1$&$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', ]
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1',]
 
 
 # Application definition
@@ -171,3 +172,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'https://www.youtube.com',
 ]
+
+
+django_heroku.settings(locals())
