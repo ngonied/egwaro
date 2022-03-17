@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'change-in-production')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'egwaro.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'egwaro.herokuapp.com', 'egwaro-api.herokuapp.com',]
 
 
 # Application definition
