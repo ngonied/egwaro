@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x_cz0*e#527f-pj5pi+w(@3a0_s-lvd%5aez!&e&x$q1%t1$&$'
+SECRET_KEY = os.getenv('SECRET_KEY', 'change-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -185,3 +186,6 @@ CORS_ORIGIN_WHITELIST = [
 
 
 django_on_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
+
+if "DYNO" in os.environ:
+    STATIC_ROOT = 'static'
