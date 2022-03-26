@@ -23,13 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'change-in-production')
+SECRET_KEY = '4e&6aw+(5&cg^_!05r(&7_#dghg_pdgopq(yk)xa^bog7j)^*j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'egwaro.herokuapp.com', 'egwaro-api.herokuapp.com',]
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',]
+AUTH_USER_MODEL = "authentication.CustomUser"
 
 # Application definition
 
@@ -50,8 +50,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'corsheaders.middleware.CorsMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,22 +86,22 @@ WSGI_APPLICATION = 'egwaro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': "dalpk7u77b3fag",
-        'USER':"xjvbwigdoyeimr",
-        'PASSWORD':"ce99abcb24cef4c5f792e63dc2c907d8f2d77ea5bb059985cfe6f256486ca37f",
-        'HOST':"ec2-3-216-221-31.compute-1.amazonaws.com",
-        'PORT': "5432",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+#         'NAME': "dalpk7u77b3fag",
+#         'USER':"xjvbwigdoyeimr",
+#         'PASSWORD':"ce99abcb24cef4c5f792e63dc2c907d8f2d77ea5bb059985cfe6f256486ca37f",
+#         'HOST':"ec2-3-216-221-31.compute-1.amazonaws.com",
+#         'PORT': "5432",
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -185,7 +186,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 
-django_on_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
+# django_on_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
 
-if "DYNO" in os.environ:
-    STATIC_ROOT = 'static'
+# if "DYNO" in os.environ:
+#     STATIC_ROOT = 'static'

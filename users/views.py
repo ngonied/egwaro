@@ -57,6 +57,7 @@ class LogoutBlackListRefreshTokenView(APIView):
         try:
             refresh_token = request.data["refresh_token"]
             token = RefreshToken(refresh_token)
+            print("Here's the new token "+token)
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
