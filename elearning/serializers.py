@@ -100,16 +100,22 @@ class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = ['id', 'name', 'description', 'course',
-                  'course_name', 'image', 'file1', 'content', 'video']
+                  'course_name', 'image', 'file1', 'content', 'video', 'average_score', 'studying']
 
     def get_course_name(self, topic):
         course_name = topic.course.name
         return course_name
 
 class TopicListSerializer(serializers.ModelSerializer):
+    status = serializers.SerializerMethodField('get_status')
+
     class Meta:
         model = Topic
-        fields = ['id', 'name', 'description', 'course', 'image']
+        fields = ['id', 'name', 'description', 'course', 'image', 'average_score', 'studying', 'status']
+
+    def get_status(self, topic):
+        status = topic.get_studying_display()
+        return status
 
 class IllustrationSerializer(serializers.ModelSerializer):
     class Meta:

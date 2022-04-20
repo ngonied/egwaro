@@ -17,6 +17,7 @@ class Syllabus(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "Syllabi"
 
     def __str__(self):
         return self.name
@@ -77,6 +78,8 @@ class CourseKeyPoint(models.Model):
 
 
 class Topic(models.Model):
+    STATUS = (('P', 'Pending'), ('I', 'Progressing'), ('C', 'Complete'))
+    
     name = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=255, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
@@ -84,6 +87,11 @@ class Topic(models.Model):
     file1 = models.FileField(upload_to="files/material", blank=True, null=True)
     content = models.TextField(null=True)
     video  = models.CharField(max_length = 200, null = True)
+    studying = models.CharField(max_length=1, choices = STATUS, default = 'P')
+    average_score = models.IntegerField(default=0, validators=[
+        MaxValueValidator(100),
+        MinValueValidator(0)
+    ])
 
     def __str__(self):
         return self.name

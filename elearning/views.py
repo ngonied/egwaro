@@ -136,7 +136,7 @@ class SubjectCoursesView(generics.ListAPIView):
 class CourseTopicsView(generics.ListAPIView):
     def get_queryset(self):
         queryset = Topic.objects.filter(
-            course__id__exact=self.kwargs["course_id"])
+            course__exact=self.kwargs["pk"])
         return queryset
     serializer_class = TopicListSerializer
 
